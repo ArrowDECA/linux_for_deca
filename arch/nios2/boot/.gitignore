@@ -1,0 +1,8 @@
+
+# Author	KMS -	Martin Dubois, ing.
+# Client	Coveloz
+# Product	linux-socfpga
+# File		arch/nios2/boot/.gitignore
+
+system.dtb
+

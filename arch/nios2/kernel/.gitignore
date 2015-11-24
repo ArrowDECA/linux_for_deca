@@ -1,0 +1,8 @@
+
+# Author	KMS -	Martin Dubois, ing.
+# Client	Coceloz
+# Product	linux-socfpga
+# File		arch/nios2/kernel/.gitignore
+
+vmlinux.lds
+

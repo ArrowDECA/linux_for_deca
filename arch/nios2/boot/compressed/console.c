@@ -18,7 +18,7 @@
 
 #include <linux/io.h>
 
-#if (defined(CONFIG_SERIAL_ALTERA_JTAGUART_CONSOLE) && defined(JTAG_UART_BASE))\
+#if (defined(CONFIG_SERIAL_ALTERA_JTAGUART_CONSOLE) && defined(CONFIG_SERIAL_ALTERA_JTAGUART_BASE))\
 	|| (defined(CONFIG_SERIAL_ALTERA_UART_CONSOLE) && defined(UART0_BASE))
 static void *my_ioremap(unsigned long physaddr)
 {
@@ -26,7 +26,7 @@ static void *my_ioremap(unsigned long physaddr)
 }
 #endif
 
-#if defined(CONFIG_SERIAL_ALTERA_JTAGUART_CONSOLE) && defined(JTAG_UART_BASE)
+#if defined(CONFIG_SERIAL_ALTERA_JTAGUART_CONSOLE) && defined(CONFIG_SERIAL_ALTERA_JTAGUART_BASE)
 
 #define ALTERA_JTAGUART_SIZE				8
 #define ALTERA_JTAGUART_DATA_REG			0
@@ -60,7 +60,7 @@ static int putchar(int ch)
 
 static void console_init(void)
 {
-	uartbase = (unsigned long) my_ioremap((unsigned long) JTAG_UART_BASE);
+	uartbase = (unsigned long) my_ioremap((unsigned long) CONFIG_SERIAL_ALTERA_JTAGUART_BASE);
 	writel(ALTERA_JTAGUART_CONTROL_AC_MSK,
 		uartbase + ALTERA_JTAGUART_CONTROL_REG);
 }
