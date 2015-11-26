@@ -107,14 +107,12 @@
 		};
 
 		rgmii_0_eth_tse_0: ethernet@400 {
-			compatible = "altr,tse-msgdma-1.0", "altr,tse-1.0";
+			compatible = "altr,tse-1.0";
 			reg = <0x0c100000 0x00000400>,
-				<0x0c100420 0x00000020>,
-				<0x0c100400 0x00000020>,
-				<0x0c1004c0 0x00000008>,
-				<0x0c100440 0x00000020>,
-				<0x0c100460 0x00000020>;
-			reg-names = "control_port", "rx_csr", "rx_desc", "rx_resp", "tx_csr", "tx_desc";
+				<0x0c100400 0x00000040>,
+				<0x0c100440 0x00000040>,
+				<0x0c000000 0x00001000>;
+			reg-names = "control_port", "rx_csr", "tx_csr", "s1";
 			interrupt-parent = <&cpu>;
 			interrupts = <4 3>;
 			interrupt-names = "rx_irq", "tx_irq";
@@ -133,8 +131,8 @@
 				compatible = "altr,tse-mdio";
 				#address-cells = <1>;
 				#size-cells = <0>;
-				phy0: ethernet-phy@0 {
-				reg = <0>;
+				phy0: ethernet-phy@1 {
+				reg = <1>;
 				device_type = "ethernet-phy";
 				};
 			};
