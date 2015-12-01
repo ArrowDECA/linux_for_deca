@@ -201,7 +201,7 @@
 		led_pio: gpio@0c800020 {
 			compatible = "altr,pio-1.0";
 			reg = <0x0c800020 0x00000010>;
-			altr,gpio-bank-width = <4>;
+			altr,gpio-bank-width = <8>;
 			resetvalue = <0>;
 			#gpio-cells = <2>;
 			gpio-controller;
@@ -212,7 +212,21 @@
 			reg = <0x0c800030 0x00000010>;
 			interrupt-parent = <&cpu>;
 			interrupts = <6>;
-			altr,gpio-bank-width = <3>;
+			altr,gpio-bank-width = <2>;
+			altr,interrupt_type = <2>;
+			edge_type = <1>;
+			level_trigger = <0>;
+			resetvalue = <0>;
+			#gpio-cells = <2>;
+			gpio-controller;
+		};
+
+		switch_pio: gpio@0c800080 {
+			compatible = "altr,pio-1.0";
+			reg = <0x0c800080 0x00000010>;
+			interrupt-parents = <&cpu>;
+			interrupts = <7>;
+			altr,gpio-bank-width = <2>;
 			altr,interrupt_type = <2>;
 			edge_type = <1>;
 			level_trigger = <0>;
@@ -233,23 +247,51 @@
 			compatible = "gpio-leds";
 
 			led_fpga0: fpga0 {
-				label = "fpga_led0";
-				gpios = <&led_pio 0 1>;
+				label = "power";
+				gpios = <&led_pio 0 0>;
+				default-state = "on";
 			};
 
 			led_fpga1: fpga1 {
-				label = "fpga_led1";
-				gpios = <&led_pio 1 1>;
+				label = "heartbeat";
+				gpios = <&led_pio 1 0>;
+				linux,default-trigger = "heartbeat";
 			};
 
 			led_fpga2: fpga2 {
-				label = "fpga_led2";
-				gpios = <&led_pio 2 1>;
+				label = "led2";
+				gpios = <&led_pio 2 0>;
+				default-state = "off";
 			};
 
 			led_fpga3: fpga3 {
-				label = "fpga_led3";
-				gpios = <&led_pio 3 1>;
+				label = "led3";
+				gpios = <&led_pio 3 0>;
+				default-state = "off";
+			};
+
+			led_fpga4: fpga4 {
+				label = "led4";
+				gpios = <&led_pio 4 0>;
+				default-state = "off";
+			};
+
+			led_fpga5: fpga5 {
+				label = "led5";
+				gpios = <&led_pio 5 0>;
+				default-state = "off";
+			};
+
+			led_fpga6: fpga6 {
+				label = "led6";
+				gpios = <&led_pio 6 0>;
+				default-state = "off";
+			};
+
+			led_fpga7: fpga7 {
+				label = "led7";
+				gpios = <&led_pio 7 0>;
+				default-state = "off";
 			};
 		};
 	};
